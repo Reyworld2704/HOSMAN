@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSMAN - Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background: #3498db;
+            color: #fff;
+            padding: 15px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        .menu-toggle {
+            font-size: 1.5em;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+        .tiles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .tile {
+            background: #fff;
+            color: #000;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            background: #2c3e50;
+            color: #fff;
+            padding: 15px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            font-size: 0.8em;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="menu-toggle" onclick="toggleMenu()">☰</span>
+    </div>
+    <div class="tiles-container" id="tiles-container">
+        <div class="tile">
+            <h3>Medical Article 1</h3>
+            <p>Details about medical article 1.</p>
+        </div>
+        <div class="tile">
+            <h3>Medical Article 2</h3>
+            <p>Details about medical article 2.</p>
+        </div>
+        <div class="tile">
+            <h3>Hospital Announcement 1</h3>
+            <p>Details about hospital announcement 1.</p>
+        </div>
+        <div class="tile">
+            <h3>Hospital Announcement 2</h3>
+            <p>Details about hospital announcement 2.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="#">Contact</a>
+        <a href="#">Help</a>
+        <a href="#">About</a>
+    </div>
+    <script>
+        function toggleMenu() {
+            const tilesContainer = document.getElementById('tiles-container');
+            tilesContainer.style.display = tilesContainer.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

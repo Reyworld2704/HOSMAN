@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSMAN - Notification System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 20%, #f39c12 30%, #27ae60 40%, #c0392b 50%, #8e44ad 60%, #2c3e50 70%, #e67e22 80%, #3498db 90%);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin: 10px 0;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        form input, form textarea {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #fff;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Notification System</h1>
+        <div class="card">
+            <h2>Create New Notification</h2>
+            <form action="your_server_endpoint" method="POST">
+                <input type="text" name="notification-title" placeholder="Notification Title" required>
+                <textarea name="notification-body" placeholder="Notification Body" rows="5" required></textarea>
+                <button type="submit">Create Notification</button>
+            </form>
+        </div>
+        <div class="card">
+            <h2>Notification Records</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Body</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Placeholder for dynamically generated notification records -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

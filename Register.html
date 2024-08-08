@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSMAN - Sign Up</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://thumbs.dreamstime.com/b/young-doctor-smiling-portrait-african-american-arms-crossed-isolated-over-white-background-36367698.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .register-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 3em;
+            color: #000;
+            margin: 0;
+        }
+        .header p {
+            font-size: 1em;
+            color: #000;
+            margin: 0;
+        }
+        input[type="text"], input[type="password"], input[type="date"], select, input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background: #333;
+        }
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+        .password-container input {
+            width: calc(100% - 40px);
+            padding-right: 40px;
+        }
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="header">
+            <h1>HOSMAN</h1>
+            <p>Your trusted hospital management solutions.</p>
+        </div>
+        <form id="register-form">
+            <input type="text" id="reg-first-name" placeholder="First Name(s)" required>
+            <input type="text" id="reg-last-name" placeholder="Last Name(s)" required>
+            <input type="date" id="reg-dob" placeholder="Date of Birth" required>
+            <select id="reg-occupation" required>
+                <option value="">Select Occupation</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Nurse">Nurse</option>
+                <option value="Pharmacist">Pharmacist</option>
+                <option value="Manager">Manager</option>
+            </select>
+            <input type="text" id="reg-hospital-name" placeholder="Name of Hospital" required>
+            <input type="text" id="reg-employee-id" placeholder="Employee ID" required>
+            <input type="text" id="reg-username" placeholder="Username" required>
+            <input type="email" id="reg-email" placeholder="Email" required>
+            <div class="password-container">
+                <input type="password" id="reg-password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+            <input type="password" id="reg-confirm-password" placeholder="Confirm Password" required>
+            <input type="submit" value="Sign Up">
+        </form>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('reg-password');
+            const toggleIcon = document.querySelector('.toggle-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.textContent = '🙈';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.textContent = '👁️';
+            }
+        }
+
+        const registerForm = document.getElementById('register-form');
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const firstName = document.getElementById('reg-first-name').value;
+            const lastName = document.getElementById('reg-last-name').value;
+            const dob = document.getElementById('reg-dob').value;
+            const occupation = document.getElementById('reg-occupation').value;
+            const hospitalName = document.getElementById('reg-hospital-name').value;
+            const employeeId = document.getElementById('reg-employee-id').value;
+            const username = document.getElementById('reg-username').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirmPassword = document.getElementById('reg-confirm-password').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert("Registration successful");
+                    window.location.href = "welcome.html";
+                })
+                .catch((error) => {
+                    alert("Error: " + error.message);
+                });
+        });
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBJQXf2FLYiUQf-lfXhgcBkVAyeyELYBzk",
+            authDomain: "hosman-63e02.firebaseapp.com",
+            projectId: "hosman-63e02",
+            storageBucket: "hosman-63e02.appspot.com",
+            messagingSenderId: "931595993811",
+            appId: "1:931595993811:web:8d033ec73d8f21a339637e"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+</body>
+</html>

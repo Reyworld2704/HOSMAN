@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOSMAN - Sign In</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('https://thumbs.dreamstime.com/b/young-doctor-smiling-portrait-african-american-arms-crossed-isolated-over-white-background-36367698.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .signin-container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 3em;
+            color: #000;
+            margin: 0;
+        }
+        .header p {
+            font-size: 1em;
+            color: #000;
+            margin: 0;
+        }
+        input[type="email"], input[type="password"] {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .password-container {
+            position: relative;
+            width: 100%;
+        }
+        .password-container input {
+            width: calc(100% - 40px);
+            padding-right: 40px;
+        }
+        .password-container .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+        input[type="submit"] {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="signin-container">
+        <div class="header">
+            <h1>HOSMAN</h1>
+            <p>Your trusted hospital management solutions.</p>
+        </div>
+        <form id="signin-form">
+            <input type="email" id="email" placeholder="Email" required>
+            <div class="password-container">
+                <input type="password" id="password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePassword()">
+                    <img src="https://image.shutterstock.com/image-vector/eye-icon-on-white-background-260nw-1777598752.jpg" alt="Show Password" width="20" height="20">
+                </span>
+            </div>
+            <input type="submit" value="Sign In">
+        </form>
+    </div>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.toggle-password img');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.src = 'https://image.shutterstock.com/image-vector/eye-icon-on-white-background-260nw-1777598752.jpg'; // Eye open icon
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.src = 'https://image.shutterstock.com/image-vector/eye-icon-on-white-background-260nw-1777598752.jpg'; // Eye closed icon
+            }
+        }
+
+        const signinForm = document.getElementById('signin-form');
+        signinForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    window.location.href = "home.html";
+                })
+                .catch((error) => {
+                    alert("Invalid email or password");
+                });
+        });
+    </script>
+</body>
+</html>
